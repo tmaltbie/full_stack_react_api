@@ -24,7 +24,6 @@ export default class Courses extends Component {
 
     
     render() {
-        console.log(this.state.courses)
         const courses = this.state.courses
         return (
             <div>

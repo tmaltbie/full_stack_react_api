@@ -1,13 +1,17 @@
 import React from 'react'
 
 import Courses from './components/Courses'
+import Header from './components/Header'
 
 function App() {
     return (
-        <div className="App">
-            <header className="App-header">
-                <Courses />
-            </header>
+        <div>
+            <Header />
+            <hr>
+                <div className="bounds">
+                    <Courses />
+                </div>
+            </hr>
         </div>
     );
 }
