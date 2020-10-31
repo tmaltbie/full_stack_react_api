@@ -10,7 +10,7 @@ export default class UsersSignIn extends Component {
 
         return(
             <div>
-
+                User Sign In!
             </div>
         )
     }

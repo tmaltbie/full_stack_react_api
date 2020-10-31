@@ -6,12 +6,10 @@ export default class UsersSignUp extends Component {
         this.state = {}
     }
 
-    
-
     render() {
         return (
             <div>
-                ...
+                Users Sign Up!
             </div>
         )
     }
