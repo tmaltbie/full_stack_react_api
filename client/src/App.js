@@ -20,13 +20,13 @@ export default function App() {
 
             <Switch>
                 <Route exact path="/" component={Courses} />
-                {/* <CourseDetail />
-                <CreateCourse />
-                <UpdateCourse />
+                <Route path="/courses/create" component={CreateCourse} />
+                <Route path={'/courses/:id/update'} component={UpdateCourse} />
+                <Route path ={'/courses/:id'} component={CourseDetail} />
 
-                <UsersSignUp />
-                <UsersSignIn />
-                <UserSignOut /> */}
+                <Route path="/signin" component={UsersSignIn} />
+                <Route path="/singup" component={UsersSignUp} />
+                <Route path="/signout" component={UserSignOut} />
             </Switch>
         </div>
     </Router>
