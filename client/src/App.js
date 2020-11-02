@@ -1,4 +1,5 @@
 import React from 'react'
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom;'
 
 import Header from './components/Header'
 import Courses from './components/Courses'
@@ -12,22 +13,21 @@ import UserSignOut from './components/UserSignOut'
 
 
 
-function App() {
-    return (
+export default function App() {
+    <Router>
         <div>
             <Header />
 
-            <Courses />
-            <CourseDetail />
-            <CreateCourse />
-            <UpdateCourse />
+            <Switch>
+                <Route exact path="/" component={Courses} />
+                {/* <CourseDetail />
+                <CreateCourse />
+                <UpdateCourse />
 
-            <UsersSignUp />
-            <UsersSignIn />
-            <UserSignOut />
-            
+                <UsersSignUp />
+                <UsersSignIn />
+                <UserSignOut /> */}
+            </Switch>
         </div>
-    );
+    </Router>
 }
-
-export default App;

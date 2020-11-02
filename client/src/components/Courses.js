@@ -27,7 +27,7 @@ export default class Courses extends Component {
         const courses = this.state.courses
         // 
         return (
-            <hr>
+
             <div className="bounds">
                 {courses.map(course => 
                     <div className="grid-33"><a className="course--module course--link" href="course-detail.html">
@@ -36,7 +36,7 @@ export default class Courses extends Component {
                     </a></div>
                 )}
             </div>
-            </hr>
+
         )
     }
 }
