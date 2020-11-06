@@ -18,18 +18,17 @@ export default function App() {
         <Router>
             <div>
                 <Header />
-                <hr>
+                <hr/>
                     <Switch>
                         <Route exact path="/" component={Courses} />
                         <Route path="/courses/create" component={CreateCourse} />
                         <Route path={'/courses/:id/update'} component={UpdateCourse} />
-                        <Route path ={'/courses/:id'} component={CourseDetail} />
+                        <Route path={'/courses/:id'} component={CourseDetail} />
 
                         <Route path="/signin" component={UsersSignIn} />
-                        <Route path="/singup" component={UsersSignUp} />
+                        <Route path="/signup" component={UsersSignUp} />
                         <Route path="/signout" component={UserSignOut} />
                     </Switch>
-                </hr>
             </div>
         </Router>
     )

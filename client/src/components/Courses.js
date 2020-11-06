@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import axios from 'axios'
+import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 export default class Courses extends Component {
 
@@ -25,18 +26,16 @@ export default class Courses extends Component {
     
     render() {
         const courses = this.state.courses
-        // 
+        console.log(courses)
         return (
-
             <div className="bounds">
                 {courses.map(course => 
-                    <div className="grid-33"><a className="course--module course--link" href="course-detail.html">
+                    <div key={course.id} className="grid-33"><Link className="course--module course--link" to={'/courses/:id'}>
                         <h4 className="course--label">Course</h4>
                         <h3 className="course--title">{course.title}</h3>
-                    </a></div>
+                    </Link></div>
                 )}
             </div>
-
         )
     }
 }
