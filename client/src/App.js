@@ -23,7 +23,7 @@ export default function App() {
                         <Route exact path="/" component={Courses} />
                         <Route path="/courses/create" component={CreateCourse} />
                         <Route path={'/courses/:id/update'} component={UpdateCourse} />
-                        <Route path={'/courses/:id'} component={CourseDetail} />
+                        <Route path='/courses/:id' component={CourseDetail} />
 
                         <Route path="/signin" component={UsersSignIn} />
                         <Route path="/signup" component={UsersSignUp} />
