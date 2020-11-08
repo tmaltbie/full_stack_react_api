@@ -32,7 +32,7 @@ export default class Courses extends Component {
             <div className="bounds">
                 {courses.map(course => 
                     <div key={course.id} className="grid-33">
-                        <Link className="course--module course--link" to={'/courses/:id'}>
+                        <Link className="course--module course--link" to={`/courses/${course.id}`}>
                             <h4 className="course--label">Course</h4>
                             <h3 className="course--title">{course.title}</h3>
                         </Link>
@@ -44,7 +44,7 @@ export default class Courses extends Component {
                         <polygon points="7,6 7,0 6,0 6,6 0,6 0,7 6,7 6,13 7,13 7,7 13,7 13,6 "></polygon>
                       </svg>New Course</h3>
                     </a></div>
-            </div>
+                </div>
         )
     }
 }

@@ -1,20 +1,21 @@
 import React, { Component } from 'react'
 import axios from 'axios'
-import apiBaseUrl from '../config'
+import config from '../config'
 
 export default class CourseDetail extends Component {
-    constructor() {
-        super()
-        this.state = {
-            courses: []
-        };
+    state = {
+        courses: []
     }
 
-   
+    deleteCourse = (id) => {
+
+    }
+
+//    http://localhost:5000/api/courses/
     componentDidMount() {
-        const { id } = this.props.match.params
+        const { id } = this.props.match.params 
         
-        axios.get(`http://localhost:5000/api/courses/`)
+        axios.get(`${config.apiBaseUrl}/courses/${id}`)
             .then(res => {
                 this.setState({
                     courses: res.data
@@ -22,31 +23,30 @@ export default class CourseDetail extends Component {
             })
             .catch(err => {
                 console.log("Error fetching & parsing data!", err)
-            });
+            });   
     }
 
-    render() {
-        const courses = this.state.courses
+    
 
-        let owner = courses.map(course => course.User)
-        console.log(owner)
+    render() {
+        const course = this.state.courses
+        const userData = {...course}
 
         return (
             <div>
                 <div className="actions--bar">
                     <div className="bounds">
-                        <div className="grid-100"><span><a className="button" href="update-course.html">Update Course</a><a className="button" href="#">Delete Course</a></span><a
-                            className="button button-secondary" href="index.html">Return to List</a></div>
+                        <div className="grid-100"><span><a className="button" href="update-course.html">Update Course</a>
+                            <a className="button" href="#">Delete Course</a></span>
+                            <a className="button button-secondary" href="index.html">Return to List</a></div>
                         </div>
                     </div>
-                    { courses.map(course => 
-                         
-                        <div className="bounds course--detail">
+                        <div key={course.id} className="bounds course--detail">
                         <div className="grid-66">
                             <div className="course--header">
                             <h4 className="course--label">Course</h4>
                             <h3 className="course--title">{course.title}</h3>
-                            <p>By {course.user?.firstName}</p>
+                            <p>By {userData.User?.firstName} {userData.User?.lastName}</p>
                             </div>
                             <div className="course--description">
                                 <p>{course.description}</p>
@@ -69,9 +69,9 @@ export default class CourseDetail extends Component {
                             </div>
                         </div>
                     </div>       
-                                )}
-                    
                 </div>
         )
     }
+
+    
 }
