@@ -4,13 +4,26 @@ import { Link } from 'react-router-dom';
 function UserSignUp(props) {
     const { context } = props
 
-    const [user, setUser ] = useState({
+    const [ user, setUser ] = useState({
         firstName: '',
         lastName: '',
         emailAddress: '',
         password: '',
         confirmPassword: ''
     });
+
+    const [ errors, setErrors ] = useState([])
+
+    change = (event) => {
+        const name = event.target.name;
+        const value = event.target.value;
+        setUser({...user,...{ [name]: value } });
+    }
+
+    submit = () => {
+
+    }
+
    
     return (
         <div class="bounds">
@@ -23,17 +36,17 @@ function UserSignUp(props) {
                     </div>     
 
                     <form>
-                        <div><input id="firstName" name="firstName" type="text" class="" placeholder="First Name" value=""/></div>
-                        <div><input id="lastName" name="lastName" type="text" class="" placeholder="Last Name" value=""/></div>
-                        <div><input id="emailAddress" name="emailAddress" type="text" class="" placeholder="Email Address" value=""/></div>
-                        <div><input id="password" name="password" type="password" class="" placeholder="Password" value=""/> </div>
-                        <div><input id="confirmPassword" name="confirmPassword" type="password" class="" placeholder="Confirm Password"
+                        <div><input id="firstName" name="firstName" type="text" className="" placeholder="First Name" value=""/></div>
+                        <div><input id="lastName" name="lastName" type="text" className="" placeholder="Last Name" value=""/></div>
+                        <div><input id="emailAddress" name="emailAddress" type="text" className="" placeholder="Email Address" value=""/></div>
+                        <div><input id="password" name="password" type="password" className="" placeholder="Password" value=""/> </div>
+                        <div><input id="confirmPassword" name="confirmPassword" type="password" className="" placeholder="Confirm Password"
                             value=""/></div>
-                        <div class="grid-100 pad-bottom"><button class="button" type="submit">Sign Up</button><button class="button button-secondary" onclick="event.preventDefault(); location.href='index.html';">Cancel</button></div>
+                        <div className="grid-100 pad-bottom"><button class="button" type="submit">Sign Up</button><Link className="button button-secondary" to="/">Cancel</Link></div>
                     </form>
                 </div>
                 <p>&nbsp;</p>
-                <p>Already have a user account? <a href="sign-in.html">Click here</a> to sign in!</p>
+                <p>Already have a user account? <Link to="/">Click here</Link> to sign in!</p>
             </div>
         </div>
     )
