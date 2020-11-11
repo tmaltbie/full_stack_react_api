@@ -1,15 +1,16 @@
 import React, { Component } from 'react'
 
-export default class UsersSignUp extends Component {
+export default class UserSignIn extends Component {
     constructor() {
         super()
         this.state = {}
     }
 
     render() {
-        return (
+
+        return(
             <div>
-                Users Sign Up!
+                sign in!!!
             </div>
         )
     }

@@ -1,17 +1,24 @@
 import React from 'react'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
-
 import Header from './components/Header'
 import Courses from './components/Courses'
 import CourseDetail from './components/CourseDetail'
 import CreateCourse from './components/CreateCourse'
 import UpdateCourse from './components/UpdateCourse'
-import UsersSignUp from './components/UsersSignUp'
-import UsersSignIn from './components/UsersSignIn'
+import UserSignUp from './components/UserSignUp'
+import UserSignIn from './components/UserSignIn'
 import UserSignOut from './components/UserSignOut'
+import PrivateRoute from './PrivateRoute'
+import withContext from './Context'
 
-
-
+const HeaderWithContext = withContext(Header)
+// CoursesWithContext = 
+// CourseDetailWithContext = 
+// CreateCourseWithContext = 
+// UpdateCourseWithContext = 
+const UserSignUpWithContext = withContext(UserSignUp); 
+// UserSignInWithContext =
+// UserSignOutWithContext =
 
 export default function App() {
     return (
@@ -21,13 +28,18 @@ export default function App() {
                 <hr/>
                     <Switch>
                         <Route exact path="/" component={Courses} />
+
+                        {/* <Route path="/authenticated" component={Authenticated} /> */}
+
                         <Route path="/courses/create" component={CreateCourse} />
                         <Route path={'/courses/:id/update'} component={UpdateCourse} />
                         <Route path='/courses/:id' component={CourseDetail} />
 
-                        <Route path="/signin" component={UsersSignIn} />
-                        <Route path="/signup" component={UsersSignUp} />
+                        <Route path="/signin" component={UserSignIn} />
+                        <Route path="/signup" component={UserSignUpWithContext} />
                         <Route path="/signout" component={UserSignOut} />
+
+                        {/* <Route component={NotFound} /> */}
                     </Switch>
             </div>
         </Router>
