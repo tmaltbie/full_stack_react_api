@@ -1,55 +1,59 @@
-import React, { useState } from 'react'
+import React, { Component } from 'react'
 import { Link } from 'react-router-dom';
 
-function UserSignUp(props) {
-    const { context } = props
+export default class UserSignUp extends Component {
 
-    const [ user, setUser ] = useState({
-        firstName: '',
-        lastName: '',
-        emailAddress: '',
-        password: '',
-        confirmPassword: ''
-    });
+// REFACTOR TO USE HOOKS?
+// function UserSignUp(props) {
+//     const { context } = props
 
-    const [ errors, setErrors ] = useState([])
+//     const [ user, setUser ] = useState({
+//         firstName: '',
+//         lastName: '',
+//         emailAddress: '',
+//         password: '',
+//         confirmPassword: ''
+//     });
 
-    change = (event) => {
-        const name = event.target.name;
-        const value = event.target.value;
-        setUser({...user,...{ [name]: value } });
-    }
+//     const [ errors, setErrors ] = useState([])
 
-    submit = () => {
+//     const change = (event) => {
+//         const name = event.target.name;
+//         const value = event.target.value;
+//         setUser({...user,...{ [name]: value } });
+//     }
 
-    }
+//     const submit = () => {
 
-   
-    return (
-        <div class="bounds">
-            <div class="grid-33 centered signin">
-                <h1>Sign Up</h1>
-                <div>
+//     }
 
+    render() {
+        return (
+            <div class="bounds">
+                <div class="grid-33 centered signin">
+                    <h1>Sign Up</h1>
                     <div>
 
-                    </div>     
+                        <div>
 
-                    <form>
-                        <div><input id="firstName" name="firstName" type="text" className="" placeholder="First Name" value=""/></div>
-                        <div><input id="lastName" name="lastName" type="text" className="" placeholder="Last Name" value=""/></div>
-                        <div><input id="emailAddress" name="emailAddress" type="text" className="" placeholder="Email Address" value=""/></div>
-                        <div><input id="password" name="password" type="password" className="" placeholder="Password" value=""/> </div>
-                        <div><input id="confirmPassword" name="confirmPassword" type="password" className="" placeholder="Confirm Password"
-                            value=""/></div>
-                        <div className="grid-100 pad-bottom"><button class="button" type="submit">Sign Up</button><Link className="button button-secondary" to="/">Cancel</Link></div>
-                    </form>
+                        </div>     
+
+                        <form>
+                            <div><input id="firstName" name="firstName" type="text" className="" placeholder="First Name" value=""/></div>
+                            <div><input id="lastName" name="lastName" type="text" className="" placeholder="Last Name" value=""/></div>
+                            <div><input id="emailAddress" name="emailAddress" type="text" className="" placeholder="Email Address" value=""/></div>
+                            <div><input id="password" name="password" type="password" className="" placeholder="Password" value=""/> </div>
+                            <div><input id="confirmPassword" name="confirmPassword" type="password" className="" placeholder="Confirm Password"
+                                value=""/></div>
+                            <div className="grid-100 pad-bottom"><button class="button" type="submit">Sign Up</button><Link className="button button-secondary" to="/">Cancel</Link></div>
+                        </form>
+                    </div>
+                    <p>&nbsp;</p>
+                    <p>Already have a user account? <Link to="/">Click here</Link> to sign in!</p>
                 </div>
-                <p>&nbsp;</p>
-                <p>Already have a user account? <Link to="/">Click here</Link> to sign in!</p>
             </div>
-        </div>
-    )
+        )
+    }
 }
 
-export default UserSignUp;
+// export default UserSignUp;
