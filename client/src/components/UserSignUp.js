@@ -27,7 +27,25 @@ export default class UserSignUp extends Component {
 
 //     }
 
+    state = {
+        firstName: '',
+        lastName: '',
+        emailAddress: '',
+        password: '',
+        confirmPassword: '',
+        errors: [],
+    }
+
     render() {
+        const {
+            firstName,
+            lastName,
+            emailAddress,
+            password,
+            confirmPassword,
+            errors,
+        } = this.state
+
         return (
             <div class="bounds">
                 <div class="grid-33 centered signin">
@@ -54,6 +72,22 @@ export default class UserSignUp extends Component {
             </div>
         )
     }
+
+    submit = () => {
+        const { context } = this.state
+
+        const {
+            firstName,
+            lastName,
+            emailAddress,
+            password,
+            confirmPassword,
+        };
+        
+    }
+
 }
+
+
 
 // export default UserSignUp;
