@@ -8,7 +8,8 @@ export const Context = React.createContext();
 export class Provider extends Component {
 
     state = {
-        authenticatedUser: Cookies.getJSON('authenticatedUser') || null
+        authenticatedUser: Cookies.getJSON('authenticatedUser') || null,
+        courses: null
     };
 
     constructor() {
@@ -18,8 +19,10 @@ export class Provider extends Component {
 
     render() {
         const { authenticatedUser } = this.state;
+        const { courses } = this.state;
         const value = {
             authenticatedUser,
+            courses,
             data: this.data,
             actions: { // Add the 'actions' property and object
                 signIn: this.signIn

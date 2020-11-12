@@ -33,7 +33,7 @@ export default class UserSignUp extends Component {
         lastName: '',
         emailAddress: '',
         password: '',
-        confirmPassword: '',
+        // confirmPassword: '',
         errors: [],
     }
 
@@ -43,16 +43,16 @@ export default class UserSignUp extends Component {
             lastName,
             emailAddress,
             password,
-            confirmPassword,
+            // confirmPassword,
             errors,
         } = this.state
 
         return (
-            <div class="bounds">
-                <div class="grid-33 centered signin">
+            <div className="bounds">
+                <div className="grid-33 centered signin">
                     <h1>Sign Up</h1>
                     <Form 
-                        cancel={this.cancel}
+                        // cancel={this.cancel}
                         errors={errors}
                         submit={this.submit}
                         submitButtonText="Sign Up"
@@ -86,13 +86,13 @@ export default class UserSignUp extends Component {
                                     value={password} 
                                     onChange={this.change} 
                                     placeholder="password" />
-                                <input 
+                                {/* <input 
                                     id="confirmPassword" 
                                     name="confirmPassword"
                                     type="password"
                                     value={confirmPassword} 
                                     onChange={this.change} 
-                                    placeholder="confirm password" />
+                                    placeholder="confirm password" /> */}
                             </React.Fragment>
                         )} />
                     <p>&nbsp;</p>
@@ -114,14 +114,14 @@ export default class UserSignUp extends Component {
     }
 
     submit = () => {
-        const { context } = this.state
+        const { context } = this.props
 
         const {
             firstName,
             lastName,
             emailAddress,
             password,
-            confirmPassword,
+            // confirmPassword,
         } = this.state;
 
         // New user
@@ -136,7 +136,7 @@ export default class UserSignUp extends Component {
             .then( errors => {
                 if (errors.length) {
                     this.setState({ errors });
-                    console.log(errors);
+                    console.log("errors", errors);
                 } else {
                     console.log(`${firstName} ${lastName} is successfully signed up and authenticated with ${emailAddress}!`)
                 }
