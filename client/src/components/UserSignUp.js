@@ -73,6 +73,17 @@ export default class UserSignUp extends Component {
         )
     }
 
+    change = (event) => {
+        const name = event.target.name;
+        const value = event.target.value;
+    
+        this.setState(() => {
+            return {
+                [name]: value
+            };
+        });
+    }
+
     submit = () => {
         const { context } = this.state
 
@@ -82,8 +93,18 @@ export default class UserSignUp extends Component {
             emailAddress,
             password,
             confirmPassword,
-        };
-        
+        } = this.state;
+
+        // New user
+        const user = {
+            firstName,
+            lastName,
+            emailAddress,
+            password,
+        } 
+
+        context.data.createUser(user)
+
     }
 
 }

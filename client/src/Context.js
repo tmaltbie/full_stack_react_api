@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Data from './Data';
-
+import Cookies from 'js-cookie';
 import config from './config'
 
 export const Context = React.createContext(); 
@@ -8,7 +8,7 @@ export const Context = React.createContext();
 export class Provider extends Component {
 
     state = {
-        authenticatedUser: null
+        authenticatedUser: Cookies.getJSON('authenticatedUser') || null
     };
 
     constructor() {
@@ -17,17 +17,14 @@ export class Provider extends Component {
     }
 
     render() {
-
         const { authenticatedUser } = this.state;
-
         const value = {
             authenticatedUser,
             data: this.data,
             actions: { // Add the 'actions' property and object
                 signIn: this.signIn
-            }
+            },
         };
-
         return (
             <Context.Provider value={ value }>
                 {this.props.children}
