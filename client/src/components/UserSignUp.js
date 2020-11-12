@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom';
+import Form from './Form';
 
 export default class UserSignUp extends Component {
 
@@ -50,22 +51,50 @@ export default class UserSignUp extends Component {
             <div class="bounds">
                 <div class="grid-33 centered signin">
                     <h1>Sign Up</h1>
-                    <div>
-
-                        <div>
-
-                        </div>     
-
-                        <form>
-                            <div><input id="firstName" name="firstName" type="text" className="" placeholder="First Name" value=""/></div>
-                            <div><input id="lastName" name="lastName" type="text" className="" placeholder="Last Name" value=""/></div>
-                            <div><input id="emailAddress" name="emailAddress" type="text" className="" placeholder="Email Address" value=""/></div>
-                            <div><input id="password" name="password" type="password" className="" placeholder="Password" value=""/> </div>
-                            <div><input id="confirmPassword" name="confirmPassword" type="password" className="" placeholder="Confirm Password"
-                                value=""/></div>
-                            <div className="grid-100 pad-bottom"><button class="button" type="submit">Sign Up</button><Link className="button button-secondary" to="/">Cancel</Link></div>
-                        </form>
-                    </div>
+                    <Form 
+                        cancel={this.cancel}
+                        errors={errors}
+                        submit={this.submit}
+                        submitButtonText="Sign Up"
+                        elements={() => (
+                            <React.Fragment>
+                                <input 
+                                    id="firstName" 
+                                    name="firstName" 
+                                    type="text"
+                                    value={firstName} 
+                                    onChange={this.change} 
+                                    placeholder="first name" />
+                                <input 
+                                    id="lastName" 
+                                    name="lastName" 
+                                    type="text"
+                                    value={lastName} 
+                                    onChange={this.change} 
+                                    placeholder="last name" />
+                                <input 
+                                    id="emailAddress" 
+                                    name="emailAddress" 
+                                    type="text"
+                                    value={emailAddress} 
+                                    onChange={this.change} 
+                                    placeholder="email address" />
+                                <input 
+                                    id="password" 
+                                    name="password"
+                                    type="password"
+                                    value={password} 
+                                    onChange={this.change} 
+                                    placeholder="password" />
+                                <input 
+                                    id="confirmPassword" 
+                                    name="confirmPassword"
+                                    type="password"
+                                    value={confirmPassword} 
+                                    onChange={this.change} 
+                                    placeholder="confirm password" />
+                            </React.Fragment>
+                        )} />
                     <p>&nbsp;</p>
                     <p>Already have a user account? <Link to="/">Click here</Link> to sign in!</p>
                 </div>
@@ -104,9 +133,24 @@ export default class UserSignUp extends Component {
         } 
 
         context.data.createUser(user)
+            .then( errors => {
+                if (errors.length) {
+                    this.setState({ errors });
+                    console.log(errors);
+                } else {
+                    console.log(`${firstName} ${lastName} is successfully signed up and authenticated with ${emailAddress}!`)
+                }
+            })
+            .catch( err => { // handle rejected promises
+                console.log(err);
+                this.props.history.push('/error') // push to history stack (change url)
+            });
 
     }
 
+    cancel = () => {
+        this.props.history.push('/');
+    }
 }
 
 
