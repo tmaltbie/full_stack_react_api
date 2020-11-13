@@ -34,6 +34,12 @@ export class Provider extends Component {
             </Context.Provider>
         )
     }
+
+    signIn = async (emailAddress, password) => {
+        const user = await this.data.getUser(emailAddress, password);
+        return user;
+    }
+
 }
 
 export const Consumer = Context.Consumer;

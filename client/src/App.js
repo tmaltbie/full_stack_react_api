@@ -1,5 +1,6 @@
 import React from 'react'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+
 import Header from './components/Header'
 import Courses from './components/Courses'
 import CourseDetail from './components/CourseDetail'
@@ -8,18 +9,20 @@ import UpdateCourse from './components/UpdateCourse'
 import UserSignUp from './components/UserSignUp'
 import UserSignIn from './components/UserSignIn'
 import UserSignOut from './components/UserSignOut'
-import PrivateRoute from './PrivateRoute'
 import NotFound from './components/NotFound'
+import Authenticated from './components/Authenticated';
+
 import withContext from './Context'
+import PrivateRoute from './PrivateRoute'
 
 const HeaderWithContext = withContext(Header);
-// CoursesWithContext = withContext(Courses);
-// CourseDetailWithContext = withContext(CourseDetail);
-// CreateCourseWithContext = withContext(CreateCourse);
-// UpdateCourseWithContext = withContext(UpdateCourse);
+const CoursesWithContext = withContext(Courses);
+const CourseDetailWithContext = withContext(CourseDetail);
+const CreateCourseWithContext = withContext(CreateCourse);
+const UpdateCourseWithContext = withContext(UpdateCourse);
 const UserSignUpWithContext = withContext(UserSignUp); 
-// UserSignInWithContext = withContext(UserSignIn);
-// UserSignOutWithContext = withContext(UserSignOut);
+const UserSignInWithContext = withContext(UserSignIn);
+const UserSignOutWithContext = withContext(UserSignOut);
 
 export default function App() {
     return (
@@ -29,11 +32,11 @@ export default function App() {
                 <hr/>
                     <Switch>
                         <Route exact path="/" component={Courses} />
-                        {/* <Route path="/authenticated" component={Authenticated} /> */}
+                        <PrivateRoute path="/authenticated" component={Authenticated} />
                         <Route path="/courses/create" component={CreateCourse} />
                         <Route path={'/courses/:id/update'} component={UpdateCourse} />
                         <Route path='/courses/:id' component={CourseDetail} />
-                        <Route path="/signin" component={UserSignIn} />
+                        <Route path="/signin" component={UserSignInWithContext} />
                         <Route path="/signup" component={UserSignUpWithContext} />
                         <Route path="/signout" component={UserSignOut} />
                         <Route component={NotFound} />
