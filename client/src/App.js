@@ -15,14 +15,14 @@ import Authenticated from './components/Authenticated';
 import withContext from './Context'
 import PrivateRoute from './PrivateRoute'
 
-const HeaderWithContext = withContext(Header);
-const CoursesWithContext = withContext(Courses);
-const CourseDetailWithContext = withContext(CourseDetail);
-const CreateCourseWithContext = withContext(CreateCourse);
-const UpdateCourseWithContext = withContext(UpdateCourse);
+// const HeaderWithContext = withContext(Header);
+// const CoursesWithContext = withContext(Courses);
+// const CourseDetailWithContext = withContext(CourseDetail);
+// const CreateCourseWithContext = withContext(CreateCourse);
+// const UpdateCourseWithContext = withContext(UpdateCourse);
 const UserSignUpWithContext = withContext(UserSignUp); 
 const UserSignInWithContext = withContext(UserSignIn);
-const UserSignOutWithContext = withContext(UserSignOut);
+// const UserSignOutWithContext = withContext(UserSignOut);
 
 export default function App() {
     return (
