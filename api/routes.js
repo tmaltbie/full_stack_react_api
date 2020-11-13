@@ -63,8 +63,8 @@ router.get('/users', authenticateUser, (req, res, next) => {
     const user = req.currentUser;
     res.status(200).json({
         login: user.emailAddress,
-        forename: user.firstName,
-        surname: user.lastName,
+        firstName: user.firstName,
+        lastName: user.lastName,
         id: user.id
     });
   });

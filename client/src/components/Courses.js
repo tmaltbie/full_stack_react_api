@@ -3,13 +3,11 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 
 export default class Courses extends Component {
-
-    constructor() {
-        super();
-        this.state = {
-            courses: []
-        };
-    }
+    state = {
+            authenticatedUser: this.state,
+            courses: [],
+            errors: [],
+        }
 
     componentDidMount() {
         axios.get('http://localhost:5000/api/courses')

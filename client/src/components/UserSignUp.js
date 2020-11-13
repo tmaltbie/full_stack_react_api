@@ -33,7 +33,7 @@ export default class UserSignUp extends Component {
         lastName: '',
         emailAddress: '',
         password: '',
-        // confirmPassword: '',
+        confirmPassword: '',
         errors: [],
     }
 
@@ -43,7 +43,7 @@ export default class UserSignUp extends Component {
             lastName,
             emailAddress,
             password,
-            // confirmPassword,
+            confirmPassword,
             errors,
         } = this.state
 
@@ -52,7 +52,7 @@ export default class UserSignUp extends Component {
                 <div className="grid-33 centered signin">
                     <h1>Sign Up</h1>
                     <Form 
-                        // cancel={this.cancel}
+                        cancel={this.cancel}
                         errors={errors}
                         submit={this.submit}
                         submitButtonText="Sign Up"
@@ -64,35 +64,35 @@ export default class UserSignUp extends Component {
                                     type="text"
                                     value={firstName} 
                                     onChange={this.change} 
-                                    placeholder="first name" />
+                                    placeholder="First Name" />
                                 <input 
                                     id="lastName" 
                                     name="lastName" 
                                     type="text"
                                     value={lastName} 
                                     onChange={this.change} 
-                                    placeholder="last name" />
+                                    placeholder="Last Name" />
                                 <input 
                                     id="emailAddress" 
                                     name="emailAddress" 
                                     type="text"
                                     value={emailAddress} 
                                     onChange={this.change} 
-                                    placeholder="email address" />
+                                    placeholder="Email Address" />
                                 <input 
                                     id="password" 
                                     name="password"
                                     type="password"
                                     value={password} 
                                     onChange={this.change} 
-                                    placeholder="password" />
-                                {/* <input 
+                                    placeholder="Password" />
+                                <input 
                                     id="confirmPassword" 
                                     name="confirmPassword"
                                     type="password"
                                     value={confirmPassword} 
                                     onChange={this.change} 
-                                    placeholder="confirm password" /> */}
+                                    placeholder="Confirm Password" />
                             </React.Fragment>
                         )} />
                     <p>&nbsp;</p>
@@ -121,30 +121,37 @@ export default class UserSignUp extends Component {
             lastName,
             emailAddress,
             password,
-            // confirmPassword,
+            confirmPassword,
         } = this.state;
 
         // New user
         const user = {
-            firstName,
-            lastName,
-            emailAddress,
-            password,
-        } 
+            firstName: firstName,
+            lastName: lastName,
+            emailAddress: emailAddress,
+            password: password,
+            confirmPassword: confirmPassword,
+        };
 
-        context.data.createUser(user)
-            .then( errors => {
-                if (errors.length) {
-                    this.setState({ errors });
-                    console.log("errors", errors);
-                } else {
-                    console.log(`${firstName} ${lastName} is successfully signed up and authenticated with ${emailAddress}!`)
-                }
-            })
-            .catch( err => { // handle rejected promises
-                console.log(err);
-                this.props.history.push('/error') // push to history stack (change url)
+        if (password != confirmPassword) {
+            this.setState({
+                errors: ["Passwords do not match"]
             });
+        } else {
+            context.data.createUser(user)
+                .then( errors => {
+                    if (errors.length) {
+                        this.setState({ errors });
+                        console.log("errors", errors);
+                    } else {
+                        console.log(`${firstName} ${lastName} is successfully signed up and authenticated with ${emailAddress}!`)
+                    }
+                })
+                .catch( err => { // handle rejected promises
+                    console.log(err);
+                    this.props.history.push('/error') // push to history stack (change url)
+                });
+        }
 
     }
 
