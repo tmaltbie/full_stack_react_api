@@ -15,7 +15,7 @@ import Authenticated from './components/Authenticated';
 import withContext from './Context'
 import PrivateRoute from './PrivateRoute'
 
-// const HeaderWithContext = withContext(Header);
+const HeaderWithContext = withContext(Header);
 // const CoursesWithContext = withContext(Courses);
 // const CourseDetailWithContext = withContext(CourseDetail);
 // const CreateCourseWithContext = withContext(CreateCourse);
@@ -28,7 +28,7 @@ export default function App() {
     return (
         <Router>
             <div>
-                <Header />
+                <HeaderWithContext />
                 <hr/>
                     <Switch>
                         <Route exact path="/" component={Courses} />
