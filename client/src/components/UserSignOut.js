@@ -1,11 +1,11 @@
-import React from 'react'
+import React, { useEffect } from 'react';
+import { Redirect } from 'react-router-dom';
 
-function UserSignOut() {
+export default ({ context }) => {
+    // component calls signOut and updates state after render
+    useEffect(() => context.actions.signOut());
+
     return (
-        <div>
-            User Sign Out Here
-        </div>
-    )
+        <Redirect to='/' />
+    );
 }
-
-export default UserSignOut;
