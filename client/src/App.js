@@ -34,9 +34,9 @@ export default function App() {
                     <Switch>
                         <Route exact path="/" component={Courses} />
                         <PrivateRoute path="/authenticated" component={AuthWithContext} />
-                        <Route path="/courses/create" component={CreateCourse} />
-                        <Route path={'/courses/:id/update'} component={UpdateCourse} />
-                        <Route path='/courses/:id' component={CourseDetail} />
+                        <PrivateRoute path="/courses/create" component={CreateCourse} />
+                        <PrivateRoute path={'/courses/:id/update'} component={UpdateCourse} />
+                        <PrivateRoute path='/courses/:id' component={CourseDetail} />
                         <Route path="/signin" component={UserSignInWithContext} />
                         <Route path="/signup" component={UserSignUpWithContext} />
                         <Route path="/signout" component={UserSignOutWithContext} />
