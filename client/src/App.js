@@ -17,10 +17,10 @@ import PrivateRoute from './PrivateRoute'
 
 const HeaderWithContext = withContext(Header);
 const AuthWithContext = withContext(Authenticated);
-// const CoursesWithContext = withContext(Courses);
-// const CourseDetailWithContext = withContext(CourseDetail);
-// const CreateCourseWithContext = withContext(CreateCourse);
-// const UpdateCourseWithContext = withContext(UpdateCourse);
+const CoursesWithContext = withContext(Courses);
+const CourseDetailWithContext = withContext(CourseDetail);
+const CreateCourseWithContext = withContext(CreateCourse);
+const UpdateCourseWithContext = withContext(UpdateCourse);
 const UserSignUpWithContext = withContext(UserSignUp); 
 const UserSignInWithContext = withContext(UserSignIn);
 const UserSignOutWithContext = withContext(UserSignOut);
@@ -32,9 +32,9 @@ export default function App() {
                 <HeaderWithContext />
                 <hr/>
                     <Switch>
-                        <Route exact path="/" component={Courses} />
+                        <Route exact path="/" component={CoursesWithContext} />
                         <PrivateRoute path="/authenticated" component={AuthWithContext} />
-                        <PrivateRoute path="/courses/create" component={CreateCourse} />
+                        <PrivateRoute path="/courses/create" component={CreateCourseWithContext} />
                         <PrivateRoute path={'/courses/:id/update'} component={UpdateCourse} />
                         <PrivateRoute path='/courses/:id' component={CourseDetail} />
                         <Route path="/signin" component={UserSignInWithContext} />

@@ -9,17 +9,34 @@ export default class Courses extends Component {
             errors: [],
         }
 
-    componentDidMount() {
-        axios.get('http://localhost:5000/api/courses')
-            .then(res => {
-                this.setState({
-                    courses: res.data
-                })
-            })
-            .catch(err => {
-                console.log("Error fetching & parsing data!", err)
-            });
-    }
+    
+        componentDidMount() {
+            const { context } = this.props;
+            console.log("context " + context);
+    
+            context.data.getCourses()
+                .then((courses) => {
+                    if (courses) {
+                        this.setState({ courses });
+                    }
+                }).catch( (error) => {
+                    this.props.history.push("/error");
+                    });
+        }
+    
+    
+    // componentDidMount() {
+    //     axios.get('http://localhost:5000/api/courses')
+    //         .then(res => {
+    //             this.setState({
+    //                 courses: res.data
+    //             })
+    //         })
+    //         .catch(err => {
+    //             console.log("Error fetching & parsing data!", err)
+    //             this.props.history.push("/error");
+    //         });
+    // }
 
     
     render() {

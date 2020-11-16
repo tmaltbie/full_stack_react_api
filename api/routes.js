@@ -83,7 +83,7 @@ router.get('/courses', asyncHandler( async(req, res, next) => {
         attributes: { exclude: [ 'createdAt', 'updatedAt'] },
         include: [{ // `include` takes an ARRAY
             model: User,
-            attributes: ['firstName', 'lastName', 'emailAddress']
+            attributes: ['id', 'firstName', 'lastName', 'emailAddress']
         }]
     });
     res.status(200).json(courses);

@@ -27,7 +27,7 @@ export default (props) => {
                 {elements()}
                 <div className="pad-bottom">
                     <button className="button" type="submit">{submitButtonText}</button>
-                    <button className="button button-secondary" onClick={handleCancel}>Cancel</button>
+                    <Link className="button-2" to="/">Cancel</Link>
                 </div>
             </form>
         </div>
