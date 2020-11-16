@@ -87,6 +87,20 @@ export default class Data {
         }
     }
 
+    // POST call to update course
+    async createCourse(course, emailAddress, password) {
+        const response = await this.api('/courses', 'POST', course, true, { emailAddress, password });
+        if (response.stats === 201) {
+            return [];
+        } else if ( response.status === 400 ) {
+            return response.json().then(data => {
+                return data;
+            });
+        } else {
+            throw new Error();
+        }
+    }
+
     // GET specific course ID
     async detCourseDetails(id) {
         const response = await this.api(`/courses/${id}`, "GET");

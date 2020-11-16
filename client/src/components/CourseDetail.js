@@ -17,28 +17,6 @@ export default class CourseDetail extends Component {
         errors: []
     }
 
-    deleteCourse = () => {
-        const { context } = this.props;
-        const {
-            courseDetail,
-        } = this.state;
-    
-        const user = courseDetail.user;
-
-        const password = context.authenticatedUser.password;
-        context.data.deleteCourse(courseDetail.id, user.emailAddress, password)
-            .then( errors => {
-                if (errors.length > 0){
-                    console.log(errors);
-                } else {
-                    this.props.history.push('/');
-                }
-            }).catch(errors => {
-                console.log(errors)
-            });
-
-    }
-
     // http://localhost:5000/api/courses/
     // componentDidMount() {
     //     const { id } = this.props.match.params 
@@ -77,6 +55,28 @@ export default class CourseDetail extends Component {
     userIsAuthenticated (authenticatedUser, user) {
         return authenticatedUser.emailAddress === user.emailAddress
     }
+
+    deleteCourse = () => {
+        const { context } = this.props;
+        const {
+            courseDetail,
+        } = this.state;
+    
+        const user = courseDetail.user;
+
+        const { password } = context.authenticatedUser;
+        context.data.deleteCourse(courseDetail.id, user.emailAddress, password)
+            .then( errors => {
+                if (errors.length > 0){
+                    console.log(errors);
+                } else {
+                    this.props.history.push('/');
+                }
+            }).catch(errors => {
+                console.log(errors)
+            });
+
+    }
     
 
     render() {
@@ -87,11 +87,10 @@ export default class CourseDetail extends Component {
             courseDetail,
         } = this.state;
 
-        const user = courseDetail.user;
-        const materialsNeeded = courseDetail.materialsNeeded;
+        const { user } = courseDetail;
+        const { materialsNeeded } = courseDetail;
         const { context } = this.props;
-        const { authenticatedUser } = context;
-
+        const {authenticatedUser} = context;
         const courseID = this.props.match.params.id;
 
         return (
