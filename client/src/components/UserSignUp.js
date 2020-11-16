@@ -133,7 +133,7 @@ export default class UserSignUp extends Component {
             confirmPassword: confirmPassword,
         };
 
-        if (password != confirmPassword) {
+        if (password !== confirmPassword) {
             this.setState({
                 errors: ["Passwords do not match"]
             });
