@@ -56,6 +56,7 @@ export default class CreateCourse extends Component {
                     this.props.history.push('/')
                 }
             }).catch(error => {
+                console.log('i am here')
                 console.log(error);
             })
     }
@@ -81,22 +82,34 @@ export default class CreateCourse extends Component {
                 <div className="bounds course--detail">
                     <h1>Create Course</h1>
                     <div>
-                        <Form cancel={this.cancel} submit={this.submit} submitButtonText="Create Course" errors={errors}
+                        <Form 
+                            cancel={this.cancel}
+                            submit={this.submit}
+                            submitButtonText="Create Course"
+                            errors={errors}
                             elements={() => (
                                 <React.Fragment>
                                     <div className="grid-66">
                                         <div className="course--header">
                                             <h4 className="course--label">Course</h4>
-                                            <div><input id="title" name="title" type="text"
-                                                            className="input-title course--title--input"
-                                                            placeholder="Course title..."
-                                                            onChange={this.onChange}/></div>
+                                            <div><input 
+                                                id="title" 
+                                                name="title"
+                                                type="text"
+                                                className="input-title course--title--input"
+                                                placeholder="Course title..."
+                                                onChange={this.onChange}/>
+                                            </div>
                                             <p>By {firstName} {lastName}</p>
                                             </div>
                                             <div className="course--description">
                                                 <div>
-                                                    <textarea id="description" name="description" className=""
-                                                        placeholder="Course description..." onChange={this.onChange}>
+                                                    <textarea 
+                                                        id="description"
+                                                        name="description"
+                                                        className=""
+                                                        placeholder="Course description..."
+                                                        onChange={this.onChange}>
                                                     </textarea>
                                                 </div>
                                             </div>
@@ -107,17 +120,24 @@ export default class CreateCourse extends Component {
                                                     <li className="course--stats--list--item">
                                                         <h4>Estimated Time</h4>
                                                         <div>
-                                                            <input id="estimatedTime" name="estimatedTime" type="text"
+                                                            <input
+                                                                id="estimatedTime"
+                                                                name="estimatedTime"
+                                                                type="text"
                                                                 className="course--time--input"
-                                                                placeholder="Hours" onChange={this.onChange}/>
+                                                                placeholder="Hours"
+                                                                onChange={this.onChange}/>
                                                         </div>
                                                     </li>
                                                     <li className="course--stats--list--item">
                                                         <h4>Materials Needed</h4>
                                                         <div>
-                                                            <textarea id="materialsNeeded" name="materialsNeeded"
-                                                                    className=""
-                                                                    placeholder="List materials..." onChange={this.onChange}>
+                                                            <textarea
+                                                                id="materialsNeeded"
+                                                                name="materialsNeeded"
+                                                                className=""
+                                                                placeholder="List materials..."
+                                                                onChange={this.onChange}>
                                                             </textarea>
                                                         </div>
                                                     </li>

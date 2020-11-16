@@ -5,12 +5,13 @@ import ReactMarkdown from "react-markdown";
 // import config from '../config'
 
 export default class CourseDetail extends Component {
+    
     // state = {
     //     courses: []
     // }
 
     state = {
-        course: {
+        courseDetail: {
             user: {},
             materialsNeeded: {}
         },
@@ -59,15 +60,16 @@ export default class CourseDetail extends Component {
     deleteCourse = () => {
         const { context } = this.props;
         const {
-            course,
+            courseDetail,
         } = this.state;
     
-        const user = course.user;
+        const user = courseDetail.user;
 
         const { password } = context.authenticatedUser;
-        context.data.deleteCourse(course.id, user.emailAddress, password)
+        context.data.deleteCourse(courseDetail.id, user.emailAddress, password)
             .then( errors => {
                 if (errors.length > 0){
+                    this.setState({errors: errors})
                     console.log(errors);
                 } else {
                     this.props.history.push('/');
@@ -79,14 +81,18 @@ export default class CourseDetail extends Component {
     }
     
     render() {
+
+        console.log(this.props)
+
         // const course = this.state.courses
         // const userData = {...course}
+
         const {
-            course,
+            courseDetail,
         } = this.state;
 
-        const { user } = course;
-        const { materialsNeeded } = course;
+        const { user } = courseDetail;
+        const { materialsNeeded } = courseDetail;
         const { context } = this.props;
         const { authenticatedUser } = context;
         const courseId = this.props.match.params.id;
@@ -96,12 +102,14 @@ export default class CourseDetail extends Component {
                 <div className="action--bar">
                     <div className="bounds">
                         <div className="grid-100">
-                        <span>{this.userIsAuthenticated(authenticatedUser, user) ? (
-                            <React.Fragment>
-                                <NavLink className="button" to={`/courses/${courseId}/update`}>Update Course</NavLink>
-                                <button className="button" onClick={this.deleteCourse}>Delete Course</button>
-                            </React.Fragment>
-                        ) : <hr/> }
+                        <span>{this.userIsAuthenticated(authenticatedUser, user)
+                            ? 
+                            (
+                                <React.Fragment>
+                                    <NavLink className="button" to={`/courses/${courseId}/update`}>Update Course</NavLink>
+                                    <button className="button" onClick={this.deleteCourse}>Delete Course</button>
+                                </React.Fragment>
+                            ) : <hr/> }
                         </span>
                             <Link className="button button-secondary" to="/">Return to List</Link>
                         </div>
@@ -111,11 +119,11 @@ export default class CourseDetail extends Component {
                     <div className="grid-66">
                         <div className="course--header">
                             <h4 className="course--label"> Course </h4>
-                            <h3 className="course--title"> {course.title} </h3>
+                            <h3 className="course--title"> {courseDetail.title} </h3>
                             <h3> By {user.firstName} {user.lastName} </h3>
                         </div>
                         <div className="course--description">
-                            <p> {course.description} </p>
+                            <p> {courseDetail.description} </p>
                         </div>
                     </div>
                     <div className="grid-25 grid-right">
@@ -123,7 +131,7 @@ export default class CourseDetail extends Component {
                             <ul className="course--stats--list">
                                 <li className="course--stats--list--item">
                                     <h4>Estimated Time</h4>
-                                    <h3> {course.estimatedTime} </h3>
+                                    <h3> {courseDetail.estimatedTime} </h3>
                                 </li>
 
                                 <li className="course--stats--list--item">
