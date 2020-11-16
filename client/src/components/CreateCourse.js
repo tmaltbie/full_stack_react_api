@@ -56,7 +56,7 @@ export default class CreateCourse extends Component {
                     this.props.history.push('/')
                 }
             }).catch(error => {
-                console.log('i am here')
+                console.log('error is here in context.data.createCourse catch block')
                 console.log(error);
             })
     }
@@ -64,8 +64,9 @@ export default class CreateCourse extends Component {
     onChange = (event) => {
         const fieldName = event.target.name;
         const fieldValue = event.target.value;
+        
         this.setState({
-            [fieldName] : fieldValue
+            [fieldName]: fieldValue
         })
     }
     

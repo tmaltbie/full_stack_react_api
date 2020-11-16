@@ -122,13 +122,31 @@ router.post('/courses', authenticateUser, asyncHandler(async (req, res, next) =>
 }))
 
 // Updates a course
+// router.put('/courses/:id', authenticateUser, asyncHandler(async (req, res, next) => {
+//     const course = await Course.findByPk(req.params.id)
+//     const body = req.body
+//     if (body === " ") body = null
+//     if (course.userId === req.currentUser.id) {
+//         course.update(body)
+//         return res.status(204).end();
+//     }
+// }));
+
 router.put('/courses/:id', authenticateUser, asyncHandler(async (req, res, next) => {
     const course = await Course.findByPk(req.params.id)
     const body = req.body
-    if (body === " ") body = null
-    if (course.userId === req.currentUser.id) {
-        course.update(body)
-        return res.status(204).end();
+
+    if (course) { // make sure there is a course at all!
+        if (req.currentUser.id === course.userId) {
+            await course.update(body);
+            res.sendStatus(204);
+        } else {
+            res.status(403).json({ message: 'Access Denied' })
+        }
+    } else {
+        let err = new Error( `Course ID ${req.params.id} could not be found` )
+        err.status = 403
+        next(err)
     }
 }));
 
