@@ -33,17 +33,21 @@ export default class CourseDetail extends Component {
     //         });   
     // }
 
-
     componentDidMount() {
         const { id } = this.props.match.params;
         const { context } = this.props;
 
         context.data.detCourseDetails(id).then((response => {
+            console.log("user:", response.User)
+            console.log("response:", response)
             if (response){
                 this.setState({
                     courseDetail: response,
-                    user: response.user,
-                    materialsNeeded: response.materialsNeeded
+                    title: response.title,
+                    description: response.description,
+                    estimatedTime: response.estimatedTime,
+                    materialsNeeded: response.materialsNeeded,
+                    user: response.User,
                 });
             } else {
                 this.props.history.push("/error");
@@ -102,13 +106,11 @@ export default class CourseDetail extends Component {
                 <div className="action--bar">
                     <div className="bounds">
                         <div className="grid-100">
-                        <span>{this.userIsAuthenticated(authenticatedUser, user)
-                            ? 
-                            (
-                                <React.Fragment>
-                                    <NavLink className="button" to={`/courses/${courseId}/update`}>Update Course</NavLink>
-                                    <button className="button" onClick={this.deleteCourse}>Delete Course</button>
-                                </React.Fragment>
+                        <span>{this.userIsAuthenticated(authenticatedUser, user) ? (
+                            <React.Fragment>
+                                <NavLink className="button" to={`/courses/${courseId}/update`}>Update Course</NavLink>
+                                <button className="button" onClick={this.deleteCourse}>Delete Course</button>
+                            </React.Fragment>
                             ) : <hr/> }
                         </span>
                             <Link className="button button-secondary" to="/">Return to List</Link>

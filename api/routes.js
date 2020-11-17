@@ -58,18 +58,19 @@ const authenticateUser = async(req, res, next) => {
     }
 };
 
-// Returns the currently authenticated user
+/* Returns the currently authenticated user */
 router.get('/users', authenticateUser, (req, res, next) => {
     const user = req.currentUser;
     res.status(200).json({
-        login: user.emailAddress,
         firstName: user.firstName,
         lastName: user.lastName,
+        emailAddress: user.emailAddress,
+        password: user.password,
         id: user.id
     });
   });
 
-// Create a new user ~ Remember => app.use(express.json());
+/* Create a new user ~ Remember => app.use(express.json()); */
 router.post('/users', asyncHandler(async(req, res, next) => {
     const body = req.body
     if (body.password) body.password = bcryptjs.hashSync(body.password);
@@ -77,7 +78,7 @@ router.post('/users', asyncHandler(async(req, res, next) => {
     return res.status(201).location('/').end();
 }));
 
-// Returns a list of courses
+/* Returns a list of courses */
 router.get('/courses', asyncHandler( async(req, res, next) => {
     const courses = await Course.findAll({
         attributes: { exclude: [ 'createdAt', 'updatedAt'] },
@@ -89,7 +90,7 @@ router.get('/courses', asyncHandler( async(req, res, next) => {
     res.status(200).json(courses);
 }));
 
-// Returns the courses (w/owner) for the provided course ID
+/* Returns the courses (w/owner) for the provided course ID */
 router.get('/courses/:id', asyncHandler(async (req, res, next) => {
     const course = await Course.findByPk(
         req.params.id,
@@ -109,19 +110,19 @@ router.get('/courses/:id', asyncHandler(async (req, res, next) => {
     }
 }));
 
-// Creates a course, sets the Location header
+/* Creates a course */
 router.post('/courses', authenticateUser, asyncHandler(async (req, res, next) => {
     let course;
-    if (req.currentUser.id != 0) { // validate there user by check for an id #
+    if (req.currentUser.id != 0) { // validate user by checking for an id #
         course = await Course.create(req.body);
-        res.location(`/courses/${course.id}`)
-        return res.status(201).end();
+        return res.status(201).location(`/courses/${course.id}`).end();
     } else {
         return res.status(403).end();
     }
 }))
 
-// Updates a course
+/* Updates a course */
+
 // router.put('/courses/:id', authenticateUser, asyncHandler(async (req, res, next) => {
 //     const course = await Course.findByPk(req.params.id)
 //     const body = req.body
