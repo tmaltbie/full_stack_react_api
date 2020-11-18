@@ -38,9 +38,9 @@ export default class CourseDetail extends Component {
         const { context } = this.props;
 
         context.data.detCourseDetails(id).then((response => {
-            console.log("user: ", response.User)
-            console.log("response title: ", response.title)
-            console.log(response)
+            console.log("user email: ", response.User)
+            // console.log("response title: ", response.title)
+            // console.log(response)
             if (response){
                 this.setState({
                     courseDetail: response,
@@ -80,7 +80,7 @@ export default class CourseDetail extends Component {
             .then( errors => {
                 if (errors.length > 0){
                     this.setState({errors: errors})
-                    console.log("errors: ", errors);
+                    // console.log("errors: ", errors);
                 } else {
                     this.props.history.push('/');
                 }
@@ -106,8 +106,9 @@ export default class CourseDetail extends Component {
         const { context } = this.props;
         const { authenticatedUser } = context;
         const courseId = this.props.match.params.id;
-
-        console.log("state user fn:", this.state.user?.firstName)
+        // console.log("user: ", this.state.user?.emailAddress)
+        // console.log("auth'd user: ", context.authenticatedUser?.emailAddress)
+        // console.log("state user fn:", this.state.user?.firstName)
         return (
             <div>
                 <div className="action--bar">
