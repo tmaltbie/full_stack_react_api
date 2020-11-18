@@ -107,7 +107,7 @@ export default class CourseDetail extends Component {
         const { authenticatedUser } = context;
         const courseId = this.props.match.params.id;
 
-        console.log("state:", this.state)
+        console.log("state user fn:", this.state.user?.firstName)
         return (
             <div>
                 <div className="action--bar">
@@ -128,11 +128,11 @@ export default class CourseDetail extends Component {
                     <div className="grid-66">
                         <div className="course--header">
                             <h4 className="course--label"> Course </h4>
-                            <h3 className="course--title"> {courseDetail.title} </h3>
+                            <h3 className="course--title"> {this.state.title} </h3>
                             <h3> By {user.firstName} {user.lastName} </h3>
                         </div>
                         <div className="course--description">
-                            <p> {courseDetail.description} </p>
+                            <p> {this.state.description} </p>
                         </div>
                     </div>
                     <div className="grid-25 grid-right">
@@ -140,7 +140,7 @@ export default class CourseDetail extends Component {
                             <ul className="course--stats--list">
                                 <li className="course--stats--list--item">
                                     <h4>Estimated Time</h4>
-                                    <h3> {courseDetail.estimatedTime} </h3>
+                                    <h3> {this.state.estimatedTime} </h3>
                                 </li>
 
                                 <li className="course--stats--list--item">
