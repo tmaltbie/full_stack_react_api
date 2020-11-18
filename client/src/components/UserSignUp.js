@@ -164,6 +164,4 @@ export default class UserSignUp extends Component {
     }
 }
 
-
-
 // export default UserSignUp;

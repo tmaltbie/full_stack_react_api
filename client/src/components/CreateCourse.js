@@ -44,6 +44,7 @@ export default class CreateCourse extends Component {
             description,
             estimatedTime,
             materialsNeeded,
+            errors
         } = this.state
 
         const createdCourse = { userId, title, description, estimatedTime, materialsNeeded };
@@ -51,12 +52,11 @@ export default class CreateCourse extends Component {
         context.data.createCourse(createdCourse, emailAddress, password)
             .then( errors => {
                 if (errors.length > 0) {
-                    this.setState({errors: errors})
+                    this.setState({ errors: errors })
                 } else {
                     this.props.history.push('/')
                 }
             }).catch(error => {
-                console.log('error is here in context.data.createCourse')
                 console.log(error);
             })
     }

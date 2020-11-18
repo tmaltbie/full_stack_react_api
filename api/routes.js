@@ -146,7 +146,7 @@ router.put('/courses/:id', authenticateUser, asyncHandler(async (req, res, next)
         }
     } else {
         let err = new Error( `Course ID ${req.params.id} could not be found` )
-        err.status = 403
+        err.status = 400
         next(err)
     }
 }));
@@ -180,18 +180,18 @@ router.put('/courses/:id', authenticateUser, asyncHandler(async (req, res, next)
 // DELETE a course
 router.delete('/courses/:id', authenticateUser, asyncHandler(async (req, res, next) => {
     const course = await Course.findByPk(req.params.id);
-    if (course){
+    // if (course){
         if (course.userId === req.currentUser.id) {
             await course.destroy();
             return res.status(204).end();
         } else {
             res.status(403).end()
         }
-    } else {
-        const err = new Error('Uh-oh! That course doesn\'t exist !' )
-        err.status = 404
-        next(err)
-    }
+    // } else {
+    //     const err = new Error('Uh-oh! That course doesn\'t exist !' )
+    //     err.status = 400
+    //     next(err)
+    // }
 }));
 
 module.exports = router;

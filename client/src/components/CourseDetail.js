@@ -38,8 +38,9 @@ export default class CourseDetail extends Component {
         const { context } = this.props;
 
         context.data.detCourseDetails(id).then((response => {
-            console.log("user:", response.User)
-            console.log("response:", response)
+            console.log("user: ", response.User)
+            console.log("response title: ", response.title)
+            console.log(response)
             if (response){
                 this.setState({
                     courseDetail: response,
@@ -65,16 +66,21 @@ export default class CourseDetail extends Component {
         const { context } = this.props;
         const {
             courseDetail,
+            title,
+            description,
+            estimatedTime,
+            materialsNeeded,
         } = this.state;
     
         const user = courseDetail.user;
 
         const { password } = context.authenticatedUser;
+
         context.data.deleteCourse(courseDetail.id, user.emailAddress, password)
             .then( errors => {
                 if (errors.length > 0){
                     this.setState({errors: errors})
-                    console.log(errors);
+                    console.log("errors: ", errors);
                 } else {
                     this.props.history.push('/');
                 }
@@ -101,6 +107,7 @@ export default class CourseDetail extends Component {
         const { authenticatedUser } = context;
         const courseId = this.props.match.params.id;
 
+        console.log("state:", this.state)
         return (
             <div>
                 <div className="action--bar">
