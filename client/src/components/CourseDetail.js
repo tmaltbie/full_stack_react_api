@@ -5,11 +5,6 @@ import ReactMarkdown from "react-markdown";
 // import config from '../config'
 
 export default class CourseDetail extends Component {
-    
-    // state = {
-    //     courses: []
-    // }
-
     state = {
         courseDetail: {
             user: {},
@@ -38,7 +33,7 @@ export default class CourseDetail extends Component {
         const { context } = this.props;
 
         context.data.detCourseDetails(id).then((response => {
-            console.log("user email: ", response.User)
+            
             // console.log("response title: ", response.title)
             // console.log(response)
             if (response){
@@ -74,13 +69,13 @@ export default class CourseDetail extends Component {
     
         const user = courseDetail.user;
 
-        const { password } = context.authenticatedUser;
-
+        const password = context.authenticatedUser.password;
         context.data.deleteCourse(courseDetail.id, user.emailAddress, password)
+
             .then( errors => {
-                if (errors.length > 0){
-                    this.setState({errors: errors})
-                    // console.log("errors: ", errors);
+                if (errors.length > 0) {
+                    this.setState({ errors: errors })
+                    console.log("CourseDetail setState errors: ", errors);
                 } else {
                     this.props.history.push('/');
                 }
@@ -101,14 +96,16 @@ export default class CourseDetail extends Component {
             courseDetail,
         } = this.state;
 
-        const { user } = courseDetail;
-        const { materialsNeeded } = courseDetail;
-        const { context } = this.props;
-        const { authenticatedUser } = context;
+        const user = courseDetail.user;
+        const materialsNeeded = courseDetail.materialsNeeded;
+        const {context} = this.props;
+        const {authenticatedUser} = context;
         const courseId = this.props.match.params.id;
-        // console.log("user: ", this.state.user?.emailAddress)
+        // console.log("user: ", this.state.user?)
         // console.log("auth'd user: ", context.authenticatedUser?.emailAddress)
         // console.log("state user fn:", this.state.user?.firstName)
+        console.log("user email: ", this.state.user?.emailAddress)
+        console.log(courseDetail)
         return (
             <div>
                 <div className="action--bar">
@@ -133,7 +130,7 @@ export default class CourseDetail extends Component {
                             <h3> By {user.firstName} {user.lastName} </h3>
                         </div>
                         <div className="course--description">
-                            <p> {this.state.description} </p>
+                            <p> {courseDetail.description} </p>
                         </div>
                     </div>
                     <div className="grid-25 grid-right">

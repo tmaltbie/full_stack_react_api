@@ -7,7 +7,7 @@ export default class CreateCourse extends Component {
         firstName: "",
         lastName: "",
         emailAddress: "",
-        password: "",
+        password: "joepassword",
         title: "",
         description: "",
         estimatedTime: "",
