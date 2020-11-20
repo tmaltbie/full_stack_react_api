@@ -44,6 +44,8 @@ export default class CourseDetail extends Component {
                     estimatedTime: response.estimatedTime,
                     materialsNeeded: response.materialsNeeded,
                     user: response.User,
+                    email: response.User.emailAddress
+                    
                 });
             } else {
                 this.props.history.push("/error");
@@ -53,8 +55,8 @@ export default class CourseDetail extends Component {
         });
     }
 
-    userIsAuthenticated (authenticatedUser, user) {
-        return authenticatedUser.emailAddress === user.emailAddress
+    userIsAuthenticated (authenticatedUser, email) {
+        return authenticatedUser.emailAddress === email
     }
 
     deleteCourse = () => {
@@ -96,22 +98,28 @@ export default class CourseDetail extends Component {
             courseDetail,
         } = this.state;
 
-        const user = courseDetail.user;
+        const user = courseDetail;
         const materialsNeeded = courseDetail.materialsNeeded;
         const {context} = this.props;
         const {authenticatedUser} = context;
         const courseId = this.props.match.params.id;
+        const email = this.state.email
+        console.log(email)
+        console.log("user: ", user)
+        console.log(courseDetail.User?.firstName)
+        // console.log("email: ", this.state.email) // this one returns undefined when add ".emailAddress"
+        // console.log("auth'd user: ", authenticatedUser.emailAddress) // this works
         // console.log("user: ", this.state.user?)
         // console.log("auth'd user: ", context.authenticatedUser?.emailAddress)
         // console.log("state user fn:", this.state.user?.firstName)
-        console.log("user email: ", this.state.user?.emailAddress)
-        console.log(courseDetail)
+        // console.log("user email: ", this.state.user?.emailAddress)
+        // console.log(courseDetail)
         return (
             <div>
                 <div className="action--bar">
                     <div className="bounds">
                         <div className="grid-100">
-                        <span>{this.userIsAuthenticated(authenticatedUser, user) ? (
+                        <span>{this.userIsAuthenticated(authenticatedUser, email) ? (
                             <React.Fragment>
                                 <NavLink className="button" to={`/courses/${courseId}/update`}>Update Course</NavLink>
                                 <button className="button" onClick={this.deleteCourse}>Delete Course</button>
@@ -126,8 +134,8 @@ export default class CourseDetail extends Component {
                     <div className="grid-66">
                         <div className="course--header">
                             <h4 className="course--label"> Course </h4>
-                            <h3 className="course--title"> {this.state.title} </h3>
-                            <h3> By {user.firstName} {user.lastName} </h3>
+                            <h3 className="course--title"> {courseDetail.title} </h3>
+                            <h3> By {courseDetail.User?.firstName} {courseDetail.User?.lastName} </h3>
                         </div>
                         <div className="course--description">
                             <p> {courseDetail.description} </p>
@@ -138,7 +146,7 @@ export default class CourseDetail extends Component {
                             <ul className="course--stats--list">
                                 <li className="course--stats--list--item">
                                     <h4>Estimated Time</h4>
-                                    <h3> {this.state.estimatedTime} </h3>
+                                    <h3> {courseDetail.estimatedTime} </h3>
                                 </li>
 
                                 <li className="course--stats--list--item">
