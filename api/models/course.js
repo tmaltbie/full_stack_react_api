@@ -30,7 +30,7 @@ module.exports = sequelize => {
                     msg: 'Please add a course description'
                 },
                 notEmpty: {
-                    msg: 'Please enter a course title'
+                    msg: 'Please enter a course description'
                 }
             },
         },

@@ -69,15 +69,13 @@ export default class CourseDetail extends Component {
             materialsNeeded,
         } = this.state;
     
-        const user = courseDetail.user;
-
+        const user = courseDetail.User;
         const password = context.authenticatedUser.password;
-        context.data.deleteCourse(courseDetail.id, user.emailAddress, password)
 
+        context.data.deleteCourse(courseDetail.id, user.emailAddress, password)
             .then( errors => {
                 if (errors.length > 0) {
                     this.setState({ errors: errors })
-                    console.log("CourseDetail setState errors: ", errors);
                 } else {
                     this.props.history.push('/');
                 }
@@ -88,12 +86,6 @@ export default class CourseDetail extends Component {
     }
     
     render() {
-
-        console.log(this.props)
-
-        // const course = this.state.courses
-        // const userData = {...course}
-
         const {
             courseDetail,
         } = this.state;
@@ -104,16 +96,9 @@ export default class CourseDetail extends Component {
         const {authenticatedUser} = context;
         const courseId = this.props.match.params.id;
         const email = this.state.email
-        console.log(email)
-        console.log("user: ", user)
-        console.log(courseDetail.User?.firstName)
-        // console.log("email: ", this.state.email) // this one returns undefined when add ".emailAddress"
-        // console.log("auth'd user: ", authenticatedUser.emailAddress) // this works
-        // console.log("user: ", this.state.user?)
-        // console.log("auth'd user: ", context.authenticatedUser?.emailAddress)
-        // console.log("state user fn:", this.state.user?.firstName)
-        // console.log("user email: ", this.state.user?.emailAddress)
-        // console.log(courseDetail)
+
+        console.log(courseDetail)
+        
         return (
             <div>
                 <div className="action--bar">
@@ -151,7 +136,9 @@ export default class CourseDetail extends Component {
 
                                 <li className="course--stats--list--item">
                                     <h4>Materials Needed</h4>
-                                    <ReactMarkdown> {materialsNeeded} </ReactMarkdown>
+                                    <ReactMarkdown>
+                                        {materialsNeeded}
+                                    </ReactMarkdown>
                                 </li>
                             </ul>
                         </div>
