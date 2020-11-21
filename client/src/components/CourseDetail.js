@@ -40,6 +40,7 @@ export default class CourseDetail extends Component {
         return authenticatedUser.emailAddress === email
     }
 
+    /* handles delete course button click */
     deleteCourse = () => {
         const { context } = this.props;
         const {
@@ -99,10 +100,8 @@ export default class CourseDetail extends Component {
                             <h3 className="course--title"> {courseDetail.title} </h3>
                             <h3> By {courseDetail.User?.firstName} {courseDetail.User?.lastName} </h3>
                         </div>
-                        <div className="course--description">
-                            
+                        <div className="course--description"> 
                                 <ReactMarkdown source={description} />
-                            
                         </div>
                     </div>
                     <div className="grid-25 grid-right">

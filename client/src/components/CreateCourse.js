@@ -61,6 +61,7 @@ export default class CreateCourse extends Component {
             })
     }
 
+    // updates value for change
     onChange = (event) => {
         const fieldName = event.target.name;
         const fieldValue = event.target.value;
@@ -71,7 +72,6 @@ export default class CreateCourse extends Component {
     }
     
     render() {
-
         const {
             firstName,
             lastName,
