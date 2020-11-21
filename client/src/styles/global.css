@@ -219,9 +219,10 @@ body {
   margin: 0;
   display: inline-block;
 }
+
 /* line 23, ../sass/global.sass */
 .header--logo a {
-  color: rgba(255, 255, 255, 0.5);
+  color: rgba(255, 255, 255, 0.99);
 }
 /* line 25, ../sass/global.sass */
 .header--logo a:hover {
@@ -750,4 +751,8 @@ input:focus {
 /* reduce bottom margin on the course description textarea element */
 .course--description textarea {
   margin-bottom: 20px;
+}
+
+.white {
+    color: #fff;
 }

@@ -44,10 +44,6 @@ export default class CourseDetail extends Component {
         const { context } = this.props;
         const {
             courseDetail,
-            title,
-            description,
-            estimatedTime,
-            materialsNeeded,
         } = this.state;
     
         const user = courseDetail.User;
@@ -72,7 +68,7 @@ export default class CourseDetail extends Component {
         } = this.state;
 
         const user = courseDetail;
-        const materialsNeeded = courseDetail.materialsNeeded;
+        const materialsNeeded = `${courseDetail.materialsNeeded}`;
         const {context} = this.props;
         const {authenticatedUser} = context;
         const courseId = this.props.match.params.id;
@@ -118,7 +114,7 @@ export default class CourseDetail extends Component {
                                 </li>
                                 <li className="course--stats--list--item">
                                     <h4>Materials Needed</h4>
-                                     <ReactMarkdown source={materials || ""} /> 
+                                     <ReactMarkdown source={materialsNeeded || ""} /> 
                                 </li>
                             </ul>
                         </div>

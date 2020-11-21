@@ -8,7 +8,7 @@ export default class Header extends React.PureComponent {
         return (
             <div className="header">
                 <div className="bounds">
-                    <h1 className="header--logo">
+                    <h1 className="header--logo white">
                     <Link to='/'>Courses</Link></h1>
                     <nav>
                         {authUser ? (
