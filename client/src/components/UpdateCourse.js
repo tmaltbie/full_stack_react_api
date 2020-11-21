@@ -30,19 +30,18 @@ export default class UpdateCourse extends Component {
         context.data.detCourseDetails(id).then( response => {
             if (response) {
                 this.setState({
-                    courseId:id,
+                    courseId: id,
                     title: response.title,
                     description: response.description,
                     estimatedTime: response.estimatedTime,
                     materialsNeeded: response.materialsNeeded
             });
-            }else {
+            } else {
                 this.props.history.push("./");
             }
         }).catch( (error) => {
                 console.log(error);
             });
-
     }
 
     updateCourse = () => {
@@ -125,7 +124,6 @@ export default class UpdateCourse extends Component {
                                             <textarea
                                                 id="description"
                                                 name="description"
-                                                className=""
                                                 onChange={this.onChange}
                                                 value={description}>
                                             </textarea>
@@ -144,7 +142,7 @@ export default class UpdateCourse extends Component {
                                                         type="text"
                                                         className="course--time--input"
                                                         onChange={this.onChange}
-                                                        value={estimatedTime}/>
+                                                        value={estimatedTime || ""}/>
                                                 </div>
                                             </li>
                                             <li className="course--stats--list--item">
@@ -153,9 +151,8 @@ export default class UpdateCourse extends Component {
                                                     <textarea
                                                         id="materialsNeeded"
                                                         name="materialsNeeded"
-                                                        className=""
                                                         onChange={this.onChange}
-                                                        value={materialsNeeded}>
+                                                        value={materialsNeeded || ""}>
                                                     </textarea>
                                                 </div>
                                             </li>

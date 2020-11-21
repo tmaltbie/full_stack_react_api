@@ -13,29 +13,11 @@ export default class CourseDetail extends Component {
         errors: []
     }
 
-    // http://localhost:5000/api/courses/
-    // componentDidMount() {
-    //     const { id } = this.props.match.params 
-        
-    //     axios.get(`${config.apiBaseUrl}/courses/${id}`)
-    //         .then(res => {
-    //             this.setState({
-    //                 courses: res.data
-    //             })
-    //         })
-    //         .catch(err => {
-    //             console.log("Error fetching & parsing data!", err)
-    //         });   
-    // }
-
     componentDidMount() {
         const { id } = this.props.match.params;
         const { context } = this.props;
 
         context.data.detCourseDetails(id).then((response => {
-            
-            // console.log("response title: ", response.title)
-            // console.log(response)
             if (response){
                 this.setState({
                     courseDetail: response,
@@ -45,7 +27,6 @@ export default class CourseDetail extends Component {
                     materialsNeeded: response.materialsNeeded,
                     user: response.User,
                     email: response.User.emailAddress
-                    
                 });
             } else {
                 this.props.history.push("/error");
@@ -96,8 +77,8 @@ export default class CourseDetail extends Component {
         const {authenticatedUser} = context;
         const courseId = this.props.match.params.id;
         const email = this.state.email
-
-        console.log(courseDetail)
+        const materials = `${courseDetail.materialsNeeded}`
+        const description = `${courseDetail.description}`
         
         return (
             <div>
@@ -123,7 +104,9 @@ export default class CourseDetail extends Component {
                             <h3> By {courseDetail.User?.firstName} {courseDetail.User?.lastName} </h3>
                         </div>
                         <div className="course--description">
-                            <p> {courseDetail.description} </p>
+                            
+                                <ReactMarkdown source={description} />
+                            
                         </div>
                     </div>
                     <div className="grid-25 grid-right">
@@ -133,20 +116,15 @@ export default class CourseDetail extends Component {
                                     <h4>Estimated Time</h4>
                                     <h3> {courseDetail.estimatedTime} </h3>
                                 </li>
-
                                 <li className="course--stats--list--item">
                                     <h4>Materials Needed</h4>
-                                    <ReactMarkdown>
-                                        {materialsNeeded}
-                                    </ReactMarkdown>
+                                     <ReactMarkdown source={materials || ""} /> 
                                 </li>
                             </ul>
                         </div>
                     </div>
                 </div>
             </div>
-
         );
     }
-
 }

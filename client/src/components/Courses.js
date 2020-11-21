@@ -8,12 +8,10 @@ export default class Courses extends Component {
             courses: [],
             errors: [],
         }
-
     
         componentDidMount() {
             const { context } = this.props;
-            console.log("context " + context);
-    
+        
             context.data.getCourses()
                 .then((courses) => {
                     if (courses) {
@@ -23,21 +21,6 @@ export default class Courses extends Component {
                     this.props.history.push("/error");
                     });
         }
-    
-    
-    // componentDidMount() {
-    //     axios.get('http://localhost:5000/api/courses')
-    //         .then(res => {
-    //             this.setState({
-    //                 courses: res.data
-    //             })
-    //         })
-    //         .catch(err => {
-    //             console.log("Error fetching & parsing data!", err)
-    //             this.props.history.push("/error");
-    //         });
-    // }
-
     
     render() {
         const courses = this.state.courses.map( (course) => (
