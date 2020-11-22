@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 import { Link } from 'react-router-dom';
 
 export default class Courses extends Component {
@@ -23,6 +22,7 @@ export default class Courses extends Component {
         }
     
     render() {
+        // maps over state which holds courses to create each individual course in jsx
         const courses = this.state.courses.map( (course) => (
             <div className="grid-33" key={course.id}>
                 <Link className="course--module course--link" id={course.id} to={`/courses/${course.id}`}>

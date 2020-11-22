@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 
 export default (props) => {
     const {
@@ -35,6 +34,7 @@ export default (props) => {
     );
 }
 
+// passes error object, if there are errors, display them in the html
 function ErrorsDisplay({ errors }) {
     let errorsDisplay = null;
 

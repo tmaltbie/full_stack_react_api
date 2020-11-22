@@ -15,9 +15,8 @@ export default ({ component: Component, ...rest }) => {
                                 pathname: '/signin',
                                 state: { from: props.location }
                             }} />
-                        )
-                        }
-                    />
+                        )}
+                />
             )}
         </Consumer>
     );

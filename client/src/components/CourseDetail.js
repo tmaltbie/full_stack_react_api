@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
 import { Link, NavLink } from 'react-router-dom';
 import ReactMarkdown from "react-markdown";
-// import axios from 'axios'
-// import config from '../config'
 
 export default class CourseDetail extends Component {
     state = {
@@ -17,6 +15,7 @@ export default class CourseDetail extends Component {
         const { id } = this.props.match.params;
         const { context } = this.props;
 
+        /* Extracts credentials from Context from the CourseDetail request in the API */
         context.data.detCourseDetails(id).then((response => {
             if (response){
                 this.setState({
@@ -36,16 +35,23 @@ export default class CourseDetail extends Component {
         });
     }
 
+    /**
+     * Confirms authenticated user's email is same as course creator's email
+     * @param {string} authenticatedUser - extract auth'd user email from here.
+     * @param {string} email - course's email taken from coursedetail response object 
+     */
     userIsAuthenticated (authenticatedUser, email) {
         return authenticatedUser.emailAddress === email
     }
 
-    /* handles delete course button click */
+    /* 
+    * handles delete course button by calling delete request from API
+    *   if authd'd user is course creator
+    *   if successful, destroys course & redirects user to home page
+    */
     deleteCourse = () => {
         const { context } = this.props;
-        const {
-            courseDetail,
-        } = this.state;
+        const { courseDetail } = this.state;
     
         const user = courseDetail.User;
         const password = context.authenticatedUser.password;
@@ -68,13 +74,12 @@ export default class CourseDetail extends Component {
             courseDetail,
         } = this.state;
 
-        const user = courseDetail;
+        // const user = courseDetail;
         const materialsNeeded = `${courseDetail.materialsNeeded}`;
         const {context} = this.props;
         const {authenticatedUser} = context;
         const courseId = this.props.match.params.id;
         const email = this.state.email
-        const materials = `${courseDetail.materialsNeeded}`
         const description = `${courseDetail.description}`
         
         return (

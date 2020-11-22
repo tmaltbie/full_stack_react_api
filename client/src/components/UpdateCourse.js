@@ -45,7 +45,7 @@ export default class UpdateCourse extends Component {
             });
     }
 
-    /* handles update course click */
+    /* handles update course on click */
     updateCourse = () => {
         const { context } = this.props;
         const { id } = this.props.match.params;
@@ -61,6 +61,7 @@ export default class UpdateCourse extends Component {
 
         const updatedCourse = { userId, title, description, estimatedTime, materialsNeeded };
 
+        // updates course by passing updated course data to body and email+password to auth. user
         context.data.updateCourse(id, updatedCourse, emailAddress, password)
             .then(errors => {
                 if(errors.length){
@@ -76,9 +77,10 @@ export default class UpdateCourse extends Component {
     }
 
     cancel = () => {
-        this.props.history.push('/')
+        this.props.history.push('./')
     }
 
+    /* updates values based user input */
     onChange = (event) => {
         const fieldName = event.target.name;
         const fieldValue = event.target.value;

@@ -8,7 +8,7 @@ export class Provider extends Component {
 
     state = {
         authenticatedUser: Cookies.getJSON('authenticatedUser') || null,
-        // courses: nu/ll
+        // courses: null
     };
 
     constructor() {
@@ -32,13 +32,17 @@ export class Provider extends Component {
 
         
         return (
-            
             <Context.Provider value={ value }>
                 {this.props.children}
             </Context.Provider>
         )
     }
 
+    /**
+     * Handles sign in of auth'd user w/ equivalent GET request of API
+     * @param {string} emailAddress - users email
+     * @param {string} password - users password
+     */
     signIn = async (emailAddress, password) => {
         const user = await this.data.getUser(emailAddress, password);
         if (user !== null) {
@@ -53,6 +57,7 @@ export class Provider extends Component {
         return user;
     }
 
+    /* removes name and username properties from state: user is no longer auth'd  */
     signOut = () => {
         this.setState({ authenticatedUser: null });
         Cookies.remove('authenticatedUser');

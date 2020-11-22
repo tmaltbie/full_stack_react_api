@@ -36,15 +36,15 @@ export default class CreateCourse extends Component {
         
         const {
             userId,
-            firstName,
-            lastName,
+            // firstName,
+            // lastName,
             emailAddress,
             password,
             title,
             description,
             estimatedTime,
             materialsNeeded,
-            errors
+            // errors
         } = this.state
 
         const createdCourse = { userId, title, description, estimatedTime, materialsNeeded };

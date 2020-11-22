@@ -123,16 +123,6 @@ router.post('/courses', authenticateUser, asyncHandler(async (req, res, next) =>
 
 /* Updates a course */
 
-// router.put('/courses/:id', authenticateUser, asyncHandler(async (req, res, next) => {
-//     const course = await Course.findByPk(req.params.id)
-//     const body = req.body
-//     if (body === " ") body = null
-//     if (course.userId === req.currentUser.id) {
-//         course.update(body)
-//         return res.status(204).end();
-//     }
-// }));
-
 router.put('/courses/:id', authenticateUser, asyncHandler(async (req, res, next) => {
     const course = await Course.findByPk(req.params.id)
     const body = req.body
@@ -150,6 +140,26 @@ router.put('/courses/:id', authenticateUser, asyncHandler(async (req, res, next)
         next(err)
     }
 }));
+
+// DELETE a course
+router.delete('/courses/:id', authenticateUser, asyncHandler(async (req, res, next) => {
+    const course = await Course.findByPk(req.params.id);
+    if (course.userId === req.currentUser.id) {
+        await course.destroy();
+        return res.status(204).end();
+    } else {
+        res.status(403).end()
+    }
+}));
+
+module.exports = router;
+
+
+
+
+
+
+
 
 // Updates a course
 // router.put('/courses/:id', authenticateUser, asyncHandler(async (req, res, next) => {
@@ -176,22 +186,3 @@ router.put('/courses/:id', authenticateUser, asyncHandler(async (req, res, next)
 //         }
 //     }
 // }));
-
-// DELETE a course
-router.delete('/courses/:id', authenticateUser, asyncHandler(async (req, res, next) => {
-    const course = await Course.findByPk(req.params.id);
-    // if (course){
-        if (course.userId === req.currentUser.id) {
-            await course.destroy();
-            return res.status(204).end();
-        } else {
-            res.status(403).end()
-        }
-    // } else {
-    //     const err = new Error('Uh-oh! That course doesn\'t exist !' )
-    //     err.status = 400
-    //     next(err)
-    // }
-}));
-
-module.exports = router;
