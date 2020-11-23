@@ -41,7 +41,9 @@ export default class CourseDetail extends Component {
      * @param {string} email - course's email taken from coursedetail response object 
      */
     userIsAuthenticated (authenticatedUser, email) {
-        return authenticatedUser.emailAddress === email
+        if (authenticatedUser !== null || authenticatedUser !== undefined) {
+            return authenticatedUser.emailAddress === email
+        }
     }
 
     /* 
@@ -81,18 +83,20 @@ export default class CourseDetail extends Component {
         const courseId = this.props.match.params.id;
         const email = this.state.email
         const description = `${courseDetail.description}`
-        
+
         return (
             <div>
                 <div className="action--bar">
                     <div className="bounds">
                         <div className="grid-100">
-                        <span>{this.userIsAuthenticated(authenticatedUser, email) ? (
-                            <React.Fragment>
-                                <NavLink className="button" to={`/courses/${courseId}/update`}>Update Course</NavLink>
-                                <button className="button" onClick={this.deleteCourse}>Delete Course</button>
-                            </React.Fragment>
-                            ) : <hr/> }
+                        <span>
+                            { this.userIsAuthenticated(authenticatedUser, email) ? (
+                                <React.Fragment>
+                                    <NavLink className="button" to={`/courses/${courseId}/update`}>Update Course</NavLink>
+                                    <button className="button" onClick={this.deleteCourse}>Delete Course</button>
+                                </React.Fragment>
+                                ) : <hr/>  
+                            }
                         </span>
                             <Link className="button button-secondary" to="/">Return to List</Link>
                         </div>

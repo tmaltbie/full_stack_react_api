@@ -4,30 +4,6 @@ import Form from './Form';
 
 export default class UserSignUp extends Component {
 
-// REFACTOR TO USE HOOKS?
-// function UserSignUp(props) {
-//     const { context } = props
-
-//     const [ user, setUser ] = useState({
-//         firstName: '',
-//         lastName: '',
-//         emailAddress: '',
-//         password: '',
-//         confirmPassword: ''
-//     });
-
-//     const [ errors, setErrors ] = useState([])
-
-//     const change = (event) => {
-//         const name = event.target.name;
-//         const value = event.target.value;
-//         setUser({...user,...{ [name]: value } });
-//     }
-
-//     const submit = () => {
-
-//     }
-
     state = {
         firstName: '',
         lastName: '',
@@ -96,7 +72,7 @@ export default class UserSignUp extends Component {
                             </React.Fragment>
                         )} />
                     <p>&nbsp;</p>
-                    <p>Already have a user account? <Link to="/">Click here</Link> to sign in!</p>
+                    <p>Already have a user account? <Link to="/signin">Click here</Link> to sign in!</p>
                 </div>
             </div>
         )
@@ -116,6 +92,7 @@ export default class UserSignUp extends Component {
     submit = () => {
         const { context } = this.props
 
+        // deconstruct state for simpler access
         const {
             firstName,
             lastName,
@@ -163,4 +140,46 @@ export default class UserSignUp extends Component {
     }
 }
 
-// export default UserSignUp;
+
+
+
+
+
+///////////////////////////////////
+///////////////////////////////////
+///////////////////////////////////
+/////// NOTES /////////////////////
+/////// FOR REFACTOR //////////////
+///////// TO HOOKS ////////////////
+/////////// AT LATER //////////////
+//////////// DATE /////////////////
+///////////////////////////////////
+/* 
+
+NOTES FOR HOOK REFACTOR LATER:
+
+// REFACTOR TO USE HOOKS?
+// function UserSignUp(props) {
+//     const { context } = props
+
+//     const [ user, setUser ] = useState({
+//         firstName: '',
+//         lastName: '',
+//         emailAddress: '',
+//         password: '',
+//         confirmPassword: ''
+//     });
+
+//     const [ errors, setErrors ] = useState([])
+
+//     const change = (event) => {
+//         const name = event.target.name;
+//         const value = event.target.value;
+//         setUser({...user,...{ [name]: value } });
+//     }
+
+//     const submit = () => {
+
+//     }
+
+*/
