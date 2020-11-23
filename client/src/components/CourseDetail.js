@@ -41,7 +41,7 @@ export default class CourseDetail extends Component {
      * @param {string} email - course's email taken from coursedetail response object 
      */
     userIsAuthenticated (authenticatedUser, email) {
-        if (authenticatedUser !== null || authenticatedUser !== undefined) {
+        if (authenticatedUser) {
             return authenticatedUser.emailAddress === email
         }
     }

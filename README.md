@@ -17,5 +17,3 @@ How to use the app:
 7. run ```npm install``` to install dependencies
 8. run ```npm start``` to start the server on localhost:3000
 9. Open your browser and navigate to localhost:3000
-
-
